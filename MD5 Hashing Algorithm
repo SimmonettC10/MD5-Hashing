@@ -1,0 +1,6 @@
+import hashlib
+
+PasswordFile = open("text.txt","r")
+Password = PasswordFile.read()
+
+print(hashlib.md5(Password.encode('utf-8')).hexdigest())
