@@ -1,0 +1,18 @@
+from itertools import product
+import hashlib
+
+chars = 'pasword'
+
+PasswordFile = open("storedpassword.txt")
+Password = (PasswordFile.read())
+
+
+def CrackPassword():
+    for length in range(8,9):
+        to_attempt = product(chars, repeat=length)
+        for attempt in to_attempt:
+            print(''.join(attempt)+ ': ' + hashlib.md5((''.join(attempt)).encode('utf-8')).hexdigest())
+            if hashlib.md5((''.join(attempt)).encode('utf-8')).hexdigest() == Password:
+                print ("Password is " + (''.join(attempt)))
+                break
+CrackPassword()
