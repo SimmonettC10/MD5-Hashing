@@ -1,0 +1,19 @@
+import hashlib
+
+PasswordFile = open("./storedpassword.txt", "r")
+PasswordUncracked = (PasswordFile.read())
+
+def CrackPassword():
+    with open("dictionary.txt", "r") as f:
+        words = f.read().split(",")
+
+    for word in words:
+        WordUncracked = hashlib.md5(word.encode('utf-8')).hexdigest()
+
+        if WordUncracked == PasswordUncracked:
+            print ("The password is " + word)
+            break
+    else:
+        print("This password could not be cracked using dictionary attack.")
+
+CrackPassword()
